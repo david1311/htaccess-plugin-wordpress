@@ -1,1 +1,1 @@
-RewriteBase /
+Redirect 301 /wp-content/plugins/htaccess-sources/includes/envelop/ http://htaccess-sources.com/ 

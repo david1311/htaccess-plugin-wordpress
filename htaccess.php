@@ -28,7 +28,9 @@ class htaccess_WP {
         wp_enqueue_style( 'style_css' );
         wp_enqueue_script( 'drag', plugins_url( 'assets/js/drag.js', __FILE__ ) );
         wp_enqueue_script( 'jquery-ui', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js');
+
     ?>
+
         <div class="wrap">
             <h1>Make a visual edit of htaccess</h1>
             <form>
@@ -66,17 +68,18 @@ class htaccess_WP {
         <script>
             jQuery(document).ready( function() {
                 jQuery('#test').click(function() {
-                    var text = jQuery('#wp-htaccess_txt-wrap').val();
+                    var text = jQuery('#htaccess_txt').val();
                     var data = {
                         'action': 'GetAjaxRequest',
                         'htacess': text
                     };
 
                     jQuery.get(ajaxurl, data, function(response) {
-                        var result = jQuery.parseJSON(response);
-                        console.log(result);
+                       var result = jQuery.parseJSON(response);
+                        console.log(response);
 
                         jQuery( ".results" ).append('<p>' + result[0] + '</p>');
+                        jQuery( ".results" ).append('<p>' + result[3] + '</p>');
                     });
                 });
             });
@@ -88,11 +91,9 @@ class htaccess_WP {
         $txt = $_GET['htacess'];
 
         $htacces_file = fopen(dirname( __FILE__ ) . "/includes/envelop/.htaccess", "w");
-        fwrite($htacces_file, 'RewriteBase /' . PHP_EOL);
-
+        $txt = $this->str_replace_first('/', '/wp-content/plugins/htaccess-sources/includes/envelop/',$txt);
         fwrite($htacces_file, $txt);
-
-
+        fclose($htacces_file);
         $url = get_site_url() . '/wp-content/plugins/htaccess-sources/includes/envelop/';
 
         print_r(json_encode(get_headers($url)));
@@ -100,8 +101,16 @@ class htaccess_WP {
         exit();
     }
 
+    function str_replace_first($search, $replace, $subject) {
 
-      
+        $pos = strpos($subject, $search);
+        if ($pos !== false) {
+            return substr_replace($subject, $replace, $pos, strlen($search));
+        }
+        return $subject;
+    }
+
+
     }
 $GLOBALS['htaccess_WP'] = new htaccess_WP();
 }

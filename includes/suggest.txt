@@ -2,3 +2,4 @@ Redirect 301 / {DOMAIN}/ ||TOOLTIP|| Redirecciona una carpeta a otra
 RewriteEngine On ||TOOLTIP|| Activa el modulo de reescritura de enlaces
 RewriteBase / ||TOOLTIP|| Base de la carpeta para la reescritura
 RewriteRule ^/hola/(.*)$ {DOMAIN}/(.*) [L, R=301] ||TOOLTIP|| Mueve todo lo que va despues de /hola/(anything) a {DOMAIN}/(anything)
+
