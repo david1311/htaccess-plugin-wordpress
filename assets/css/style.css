@@ -1,0 +1,88 @@
+.element {
+    color:white;
+    float: left;
+    width: auto;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    padding:10px 30px;
+    margin-right: 5px;
+}
+
+.buttons {
+    margin-top:20px;
+    width: 100%;
+    float: left;
+}
+
+.buttons a {
+    padding: 10px 30px;
+    color: white;
+    border-radius: 2px;
+}
+
+.elements {
+    margin-top:20px;
+}
+
+#test {
+    background: #ff0099;
+}
+
+#save {    background: #21ca84;  }
+
+.results {
+    margin-top:20px;
+    width: 100%;
+    float:left;
+}
+
+.results p {
+    font-size: 20px;
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
